@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}
+    home
+{% endblock %}
+
+{% block content %}
+
+<!--<div class="inner-item">-->
+    {% for t in topic_list %}
+    <div class="box">
+        <img src="{{ t.user.avatar }}">
+        <a class="title-list link" href="{{ url_for('topic.show', id=t.id) }}">{{ t.title }}</a>
+        <span>{{ t.created_time }}</span>
+        <span>{{ t.user.username }}</span>
+        <span>{{ t.comment_count }}</span>
+    </div>
+    {% endfor %}
+{% endblock %}
+{% block input %}
+{% endblock %}
+<!--</div>-->
+
+{% block footer%}
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ topic.title }}
+{% endblock %}
+
+{% block main%}
+{% block content %}
+
+<div class="box">
+    <div class="box">
+        <a href="{{ url_for('node.index') }}">首页 > </a>
+        <a href="{{ url_for('node.show', id=topic.node.id) }}">{{ topic.node.name }}</a>
+    </div>
+    <h1>{{ topic.title }}</h1>
+    <span>by:{{ topic.user.username }} </span>
+    <span>at {{ topic.created_time }}</span>
+    <p>
+        {{ topic.content}}
+    </p>
+    <div>
+        <span>评论()</span>
+    </div>
+</div>
+
+<div class="bbs-comments box">
+    {% for c in topic.comments %}
+    <div class="box">
+        <img src="{{ c.user.avatar}}">
+        <span>{{ c.content }}</span>
+        <span>{{c.user.username}}</span>
+        <span>{{ c.created_time}}</span>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
+
+{% block input %}
+<div class="box">
+    <form action="{{ url_for('comment.add') }}" method="post">
+        <input type="hidden" name="topic_id" value="{{ topic.id }}">
+        <input type="hidden" name="user_id" value="{{ user.id }}">
+        <br>
+        <textarea name="content"></textarea>
+        <br>
+        <button>发表回复</button>
+    </form>
+</div>
+{% endblock %}
+{% endblock%}
+
+

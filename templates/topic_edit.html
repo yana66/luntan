@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+    发帖
+{% endblock %}
+
+{% block input %}
+    <form action="{{ url_for('.edit') }}" method="post">
+        <input type="text" name="node_id" value="{{ topic.node_id }}">
+        <br>
+        <input type="text" name="title" value="{{ topic.title }}">
+        <br>
+        <textarea  name="content" placeholder="{{ topic.content }}"></textarea>
+        <br>
+        <button>Update</button>
+    </form>
+{% endblock %}
+
